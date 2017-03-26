@@ -1,3 +1,4 @@
+#This is just for test purpose, it won't be added into final release
 <?php
     if(isset($_COOKIE["user"]) && $_COOKIE["user"]=="superAdmin"){
         header('Location:admin_section/index.php');
