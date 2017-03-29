@@ -3,6 +3,17 @@
 <head>
 	<title>Create Department Login-Super Admin</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript">
+		function showPassword(){
+			if(document.getElementById('showPass').checked){
+				document.getElementById('passField').type="textbox";
+			}
+			else{
+				document.getElementById('passField').type="password";	
+			}
+
+		}
+	</script>
 </head>
 <body>
 <?php
@@ -22,12 +33,18 @@ if(logged_in()){
 				while($returned=$query_result->fetch_assoc()){
 					echo '<option value="'.$returned["DeptID"].'">'.$returned["DeptName"].'</option>';		
 				}
-			echo '</select></br>
+			 
+			?>
+			</select></br>
 			<input type="text" class="textbox" name="name" value="" placeholder="Name of Department Admin" /><br/>
 			<input type=text class="textbox" name="username" value="" placeholder="Enter Username"/><br/>
-			<input type="text" class="textbox" name="password" value="" placeholder="Enter Password"/><br/>
+			<input type="password" id="passField" class="textbox" name="password" value="" placeholder="Enter Password"/>
+			<input type="checkbox" id="showPass" value="" onchange="showPassword();">Show Password
+			<br/>
+			<input type="text" class="textbox" name="email" value="" placeholder="Email">
 			<input type="submit" class="button" name="create" value="Create"/>
-			<input type="reset" class="button" name="cancel" value="Cancel"/>';
+			<input type="reset" class="button" name="cancel" value="Cancel"/>
+			<?php
 	}
 	else{
 		echo '<p class="label">No Departments Found, Please add some.</p>';
@@ -42,12 +59,14 @@ else{
 <?php
 if(isset($_POST["create"]))
 {
-	if(isset($_POST["deptt"]) && isset($_POST["name"]) && isset($_POST["username"]) && isset($_POST["password"])){
+	if(isset($_POST["deptt"]) && isset($_POST["name"]) && isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["email"]) ){
 		$dept=$_POST["deptt"];
 		$name=$_POST["name"];
 		$usern=$_POST["username"];
 		$passw=$_POST["password"];
-		if(empty($dept) || empty($name) || empty($usern) || empty($passw))
+		$email=$_POST["email"];
+
+		if(empty($dept) || empty($name) || empty($usern) || empty($passw) || empty($email))
 		{
 			echo '<p class="label">Some Details missing, please fill up.</p>';
 		}
@@ -57,9 +76,10 @@ if(isset($_POST["create"]))
 			$search_result=$con->query($search_query);
 			if($search_result->num_rows)
 			{
-				echo "<script>alert('Username already exixts, choose something different')</script>";
+				echo "<script>alert('Username already exixts, choose some other username')
+				</script>";
 			}else{
-				$insert_query="INSERT INTO tbl_deptadmins(DeptID,name,UserName,Password) VALUES('$dept','$name','$usern','$passw')";
+				$insert_query="INSERT INTO tbl_deptadmins(`DeptID`,`name`,`UserName`,`Password`,`email`) VALUES('$dept','$name','$usern','$passw','$email')";
 				$insert_result=$con->query($insert_query);
 				if($con->affected_rows)
 				{
