@@ -63,8 +63,26 @@ include("includes/user_header.inc.php");
 						$insert_query="INSERT INTO tbl_compliant(name,mobile,email,subject,compliant,DeptID,status,publish_flag) VALUES('$name','$contact','$email','$subject','$compliant','$deptID','0','N')";
 						$insert_result=$con->query($insert_query);
 						if($con->affected_rows)
-						{
-							echo "<script>alert('Compliant Successfully Registered, Compliant ID is ".$con->insert_id."')</script>";
+						{	
+							$com_id=$con->insert_id;
+							echo "<script>alert('Compliant Successfully Registered, Compliant ID is ".$com_id."')</script>";
+							// Email to User as well as Department Admin Code Goes here
+								$subject="COMPLIANT REGISTERED-IUST FEEDBACK";
+								$message="Dear ".$name." Your Compliant has been successfully registered with ID ".$com_id.", We will send you an email when your compliant will be replied. Kindly keep the ID for future reference and to check reply on Feedback Portal. \n \n Regards \n  IUST Feedback Portal";
+								$headers = "From: IUSTFeedbackPortal"."\r\n" ."CC: darirfan27@yahoo.in";
+								mail($email,$subject,$message,$headers);
+
+								// code to Email Deptt. Admin goes here
+									$getAdEmail="SELECT `name`,`email` FROM tbl_deptadmins WHERE `DeptID`='$deptID'";
+									$res=$con->query($getAdEmail);
+									$adminEmail=$res->fetch_assoc();
+									$subject="COMPLIANT REGISTERED-IUST FEEDBACK";
+								$message="Dear ".$adminEmail["name"]." A Compliant has been registered with ID ".$com_id." directed to your department on IUST Feedback Portal, Kindly log on to Feedback Portal to check the complaint\n \n Regards \n  IUST Feedback Portal";
+								$headers = "From: IUSTFeedbackPortal"."\r\n" ."CC: darirfan27@yahoo.in";
+								mail($adminEmail["email"],$subject,$message,$headers);
+						}
+						else{
+							echo "<script>alert('Something went wrong, Contact Administrator')</script>";
 						}	
 					}
 				else
