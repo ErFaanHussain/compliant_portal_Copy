@@ -20,7 +20,7 @@ if(isset($_POST["Login"]))
 			}
 			else 
 			{
-				$login_query="SELECT UserName,Password FROM tbl_superadmin WHERE UserName='$uname' AND 
+				$login_query="SELECT ID,UserName,Password FROM tbl_superadmin WHERE UserName='$uname' AND 
 				Password='$pass'";
 				$query_result=$con->query($login_query);
 				$cnt = $query_result->num_rows;
@@ -31,8 +31,8 @@ if(isset($_POST["Login"]))
 				else
 				{
 					$returned=$query_result->fetch_assoc();
-                    $user=$returned["UserName"];
-					$_SESSION["admin_uname"]=$user;
+					$_SESSION["admin_uname"]=$returned["UserName"];
+					$_SESSION["adminID"]=$returned["ID"];
                     setcookie("user","superAdmin",time()+(86400*15),"/");
 				}
 			}
