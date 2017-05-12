@@ -1,13 +1,15 @@
-<?php
-include("includes/user_header.inc.php");
-?>
 <!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<title>Query Compliant:Compliant Portal</title>
-</head>
-<body>
+<html lang="en">
+  <head>
+  	<title>Query Compliant-IUST Feedback Portal</title>
+<?php
+include("includes/header.inc.php");
+?>
+<script type="text/javascript">
+  		$(document).ready(function(){
+  			$("#queryLink").addClass("active");
+  		});
+  	</script>
 <div class="mainScreen">
 	<form class="userForm" method="POST" action="<?php $_SERVER["PHP_SELF"] ?>">
 		<p class="userLabel">Enter Compliant ID:</p>
