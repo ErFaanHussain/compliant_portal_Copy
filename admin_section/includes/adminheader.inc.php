@@ -44,5 +44,6 @@ html{
 <li><a href="depttCreation.php">Create Department</a></li>
 <li><a href="createDepttLogin.php">Create Department Login</a></li>
 <li><a href="admin_dashboard.php">Compliant Dashboard</a></li>
+<li><a href="postTopic.php">Post Topic</a></li>
 <li><a href="logout.php">Logout</a></li>	
 </ul>
