@@ -1,6 +1,5 @@
 <!-- Logout Page -->
 <?php
-
 include("includes/core.inc.php");
 if(logged_in())
 	{

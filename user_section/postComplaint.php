@@ -15,15 +15,13 @@ include("includes/core.inc.php");
 <?php
 include("includes/header.inc.php");
 ?>
-<script>
-  		$(document).ready(function(){
-  			$("#postLink").addClass("active");
-  		});
-  	</script>
-<div class="container-fluid px-0">
-	<div class="col-md-9" style="float:left; !important" id="postComplaintForm">
+<script src="js/customJSpostComplaint.js"></script>
+<div class="container-fluid pb-3">
+<div class="row">
+	<div class="col-md-9">
 	<h6>Logged In As:<strong> <?php echo $_SESSION["studentName"]; ?></strong></h6>
-	<div class="col-md-6 px-0" id="formContainer" style="float:left; !important">
+	<div class="row">
+	<div class="col-md-6">
 				<div role="alert" id="errorAlert">
 				</div>
 		<form id="postComplaintForm" method="POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
@@ -35,16 +33,16 @@ include("includes/header.inc.php");
 			<div class="form-group">
     						<label for="depttSelect">Select Department</label>
     						<select class="form-control" id="depttSelect" name="depttID">
-    						<option selected value="null">--Select Department--</option>
-						<?php 
-							$fetch_query="SELECT DeptID,DeptName FROM tbl_departments";
+    						<option selected value="">--Select Department--</option>
+						<?php
+							$fetch_query="SELECT `DeptID`,`DeptName` FROM `tbl_departments`";
 							$query_result=$con->query($fetch_query);
 							$cnt = $query_result->num_rows;
 							if($cnt)
 								{
 									while($returned=$query_result->fetch_assoc()){
-										echo '<option value="'.$returned["DeptID"].'">'.$returned["DeptName"].'</option>';	
-										}	
+										echo '<option value="'.$returned["DeptID"].'">'.$returned["DeptName"].'</option>';
+										}
 								}
 						?>
 							</select>
@@ -55,15 +53,13 @@ include("includes/header.inc.php");
 							<textarea class="form-control" id="complaint" name="complaint" rows="3" value="" placeholder="Describe your Complaint"></textarea>
 							<small id="selectHelp" class="form-text text-muted">Full Description of your Complaint, not more than 500 characters</small>
 			</div>
-			<div class="form-group">
-						<div class="offset-md-3 col-md-9">
-							<input type="submit" class="btn btn-primary" id="postSubmit" name="postSubmit" value="Post">
-							<button type="reset" class="btn btn-danger ml-md-5">Cancel</button>
-						</div>
+			<div class="form-group text-center">
+							<button type="submit" class="btn btn-primary" id="postSubmit" name="postSubmit"><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;Post</button>
+							<button type="reset" class="btn btn-danger ml-3"><i class="fa fa-remove" aria-hidden="true"></i>&nbsp;Cancel</button>
 			</div>
 		</form>
 	</div>
-		<div class="col-md-5 mt-md-4 ml-md-3" style="float:left; !important">
+		<div class="col-md-6 mt-md-4">
 			<div class="alert alert-info alert-dismissible fade show" role="alert">
   					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
   					  <span aria-hidden="true">&times;</span>
@@ -76,51 +72,62 @@ include("includes/header.inc.php");
   					</button>
   					<strong>Info!</strong> Please make sure you are posting the Complaint to right department for quick reply
 			</div>
-		</div>	
+		</div>
+		</div>
 	</div>
-	<div class="col-md-3" style="float:left; !important">
+		<div class="col-md-3">
 				<!-- List-Group Panel -->
-			<div class="card card-outline-info" style="margin-top:25px;">
+			<div class="card card-outline-info mt-md-5">
 		          <div class="card-header pb-0">
-		            <h5 class="card-title"><i class="fa fa-tachometer" aria-hidden="true"></i> Portal at Glance</h5>
+		            <h5 class="card-title"><i class="fa fa-bar-chart" aria-hidden="true"></i> Portal at Glance</h5>
 		          </div>
 		          <div class="card-block py-0">
 		            <p class="card-text ">
-		            <?php 
+		            <?php
 		            include("includes/stats.inc.php");
 		            ?>
-		              <p class="text-primary">Complaints Registered: <?php echo getStats('total');?> </p>
-		              <p class="text-success">Replied: <?php echo getStats('replied');?></p>
-		              <p class="text-warning">Pending: <?php echo getStats('pending');?></p>
+		            <p class="text-primary"><i class="fa fa-list-alt" aria-hidden="true"></i> Complaints Registered: <?php echo getStats('total');?> </p>
+					<p class="text-success"><i class="fa fa-check-square-o" aria-hidden="true"></i> Replied: <?php echo getStats('replied');?></p>
+					<p class="text-warning"><i class="fa fa-pause-circle-o" aria-hidden="true"></i> Not Replied: <?php echo getStats('pending');?></p>
+              		<p class="text-primary"><i class="fa fa-check" aria-hidden="true"></i> Resolved: <?php echo getStats('resolved');?></p>
+					<p class="text-danger"><i class="fa fa-remove" aria-hidden="true"></i> Not Resolved: <?php echo getStats('notResolved');?></p>
 		            </p>
 		          </div>
         	</div>
-	
+
 				<!-- List-Group Panel -->
 				<div class="card card-outline-danger " style="margin-top:10px;">
 					<div class="card-header pb-0">
-						<h5 class="card-title"><i class="fa fa-random" aria-hidden="true"></i> Quick Links
+						<h5 class="card-title"><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;Quick Links
 						</h5>
 					</div>
 					<div class="list-group list-group-flush">
-						
-						<a href="http://iustlive.com" class="list-group-item list-group-item-action bg-primary text-white">IUST Home</a>
-						<a href="./" class="list-group-item list-group-item-action bg-primary text-white">Portal Home</a>
-						<a href="studentDashboard.php" class="list-group-item list-group-item-action bg-primary text-white">Dashboard</a>
-						<a href="postCompliant.php" class="list-group-item list-group-item-action bg-primary text-white">Post Compliant</a>
-						<a href="http://studentservice.iustlive.com/Default.aspx" class="list-group-item list-group-item-action bg-primary text-white">Student Services</a>
-						<a href="http://www.iustlive.com/Index/Examination/OnlineExamResults.aspx" class="list-group-item list-group-item-action bg-primary text-white">Results</a>
-						
-					</div>
+            
+			            <a href="http://iustlive.com" class="list-group-item list-group-item-action text-primary "><i class="fa fa-home" aria-hidden="true"></i>&nbsp;&nbsp;IUST Home</a>
+			            <a href="./" class="list-group-item list-group-item-action text-primary "><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;&nbsp;Portal Home</a>
+			            <a href="studentDashboard.php" class="list-group-item list-group-item-action text-primary "><i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;Dashboard</a>
+			            <a href="postCompliant.php" class="list-group-item list-group-item-action text-primary "><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;&nbsp;Post Complaint</a>
+			            <a href="http://studentservice.iustlive.com/Default.aspx" class="list-group-item list-group-item-action text-primary "><i class="fa fa-users" aria-hidden="true"></i>&nbsp;&nbsp;Student Services</a>
+			            <a href="http://www.iustlive.com/Index/Examination/OnlineExamResults.aspx" class="list-group-item list-group-item-action text-primary "><i class="fa fa-database" aria-hidden="true"></i>&nbsp;&nbsp;Results</a>
+			            
+          			</div>
 				</div>
+		</div>
 	</div>
 </div>
-
+<footer class="container-fluid py-2" style="background-color: #dadada;">
+	<div class="text-center">
+		<div class="my-0"><i class="fa fa-code" aria-hidden="true"></i> with <i class="fa fa-heart" aria-hidden="true"></i> by 
+		<a style="text-decoration: none;" href="https://facebook.com/erfaanhussain6"><strong style="color:#292b2c;">ErFaan</strong></a> &amp; <a style="text-decoration: none;" href="https://facebook.com/superstudomi"><strong style="color:#292b2c;">Umar</strong></a> 
+		</div>
+		<small class="my-0">Copyright &copy; DOCS - IUST 2017 </small>
+	</div>
+</footer>
 <?php
 	if(isset($_POST["postSubmit"]))
 	{
 			if(isset($_POST["subject"]) && isset($_POST["depttID"]) && isset($_POST["complaint"]))
-			{	
+			{
 				$subject=$_POST["subject"];
 				$deptID=$_POST["depttID"];
 				$complaint=$_POST["complaint"];
@@ -132,7 +139,7 @@ include("includes/header.inc.php");
 								$qResult=$con->query($sql2);
 								$fResult=$qResult->fetch_assoc();
 								$shortCode = $fResult["deptShortCode"];
-								
+
 						//Get ID of Last Complaint registered
 						$sql4="SELECT COUNT(*) FROM `tbl_compliant` WHERE `DeptID`=".$deptID;
 								$qidResult=$con->query($sql4);
@@ -141,14 +148,14 @@ include("includes/header.inc.php");
 
 							$ref = $shortCode.'/'.date("M").'/'.date("y").'/'.++$lastComptId;
 							date_default_timezone_set("Asia/Kolkata");
-							$date = date("Y-m-d"); 
+							$date = date("d-m-Y");
 							$studentID=$_SESSION["studentID"];
-						$insert_query="INSERT INTO `tbl_compliant`(`subject`,`compliant`,`DeptID`,`status`,`publish_flag`,`comptRef`,`date`,`studentID`) VALUES('$subject','$complaint','$deptID','0','N','$ref','$date','$studentID')";
+						$insert_query="INSERT INTO `tbl_compliant`(`subject`,`compliant`,`DeptID`,`status`,`publish_flag`,`comptRef`,`date`,`studentID`,`resolvedFlag`) VALUES('$subject','$complaint','$deptID','0','N','$ref','$date','$studentID','N')";
 						$insert_result=$con->query($insert_query);
 						if($con->affected_rows)
-						{	
+						{
 							?>
-							<script> 
+							<script>
 								$(document).ready(function(){
 									$("#errorAlert").addClass("alert alert-success fade show").html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Success!</strong> Complaint Successfully Registered with Reference ID: <?php echo $ref;?>')});
     						</script>
@@ -160,7 +167,7 @@ include("includes/header.inc.php");
 								$emResult=$eqResult->fetch_assoc();
 								$stdEmail = $emResult["studentEmail"];
 								$subject="COMPLAINT REGISTERED-IUST FEEDBACK";
-								$message="Dear ".$_SESSION["studentName"]." Your Complaint has been successfully registered with Reference ID ".$ref.", We will send you an email when your complaint will be replied. Kindly keep the ID for future reference and to check reply on Feedback Portal. \n \nRegards\nIUST Feedback Portal";
+								$message="Dear ".$_SESSION["studentName"]." Your Complaint has been successfully registered with Reference ID ".$ref.", We will send you an email when your complaint will be replied. Kindly keep the ID for future reference.\n\nRegards\nIUST Feedback Portal";
 								$headers = "From: IUSTFeedbackPortal"."\r\n" ."CC: darirfan27@yahoo.in";
 								mail($stdEmail,$subject,$message,$headers);
 
@@ -175,17 +182,17 @@ include("includes/header.inc.php");
 						}
 						else{
 							?>
-							<script> 
+							<script>
 								$(document).ready(function(){
 									$("#errorAlert").addClass("alert alert-danger fade show").html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Error!</strong> Something went wrong, Please Contact Administrator Error: Database Insertion Failed')});
     						</script>
 							<?php
-						}	
+						}
 					}
 				else
 					{
 						?>
-						<script> 
+						<script>
 							$(document).ready(function(){
 								$("#errorAlert").addClass("alert alert-danger fade show").html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Error!</strong>  Please fill all the details')});
     					</script>
@@ -193,7 +200,7 @@ include("includes/header.inc.php");
 					}
 			}
 	}
-	
-?>
+
+$con->close(); ?>
 </body>
 </html>
