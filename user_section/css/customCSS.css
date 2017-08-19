@@ -25,7 +25,63 @@
 .formC{
 	margin-left:27rem;
 }
+.footer{
+		display: block;
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		height: auto;
+		background-color: #d9edf7;
+		border-color:#bcdff1;
+		color:#31708f;
+		z-index: 1050;
+		box-shadow: 0px 0px 10px #888888;
+		border-radius: 10px;
+		margin-bottom: 4px;
+		margin-right: 3px;
+		margin-left: 3px;
+}
 
+/*call outs*/
+.bs-callout {
+border: 1px solid #eee;
+border-left-width: 5px;
+border-radius: 3px;
+}
+.bs-callout code {
+border-radius: 3px;
+}
+.bs-callout+.bs-callout {
+margin-top: -5px;
+}
+.bs-callout-default {
+border-left-color: #777;
+}
+.bs-callout-primary {
+border-left-color: #428bca;
+}
+.bs-callout-success {
+border-left-color: #5cb85c;
+}
+.bs-callout-danger {
+border-left-color: #d9534f;
+}
+.bs-callout-warning {
+border-left-color: #f0ad4e;
+}
+.bs-callout-info {
+border-left-color: #5bc0de;
+}
+/**/
+.card{
+	max-width: 100%;
+	word-wrap: break-word;
+}
+/*.modal-body{
+	max-width: 100%;
+	word-wrap: break-word;
+}
+*/
 @media only screen and (max-width: 768px) {
 	.naVcustom .navbar-toggler {
 		border-color: #FFF;

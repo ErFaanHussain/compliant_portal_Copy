@@ -1,17 +1,15 @@
-<!-- Logout Page -->
+<!-- Logout for Super Admin -->
 <?php
 include("includes/core.inc.php");
-include("includes/DBConnection.inc.php");
-$name=$_SESSION["admin_uname"];
-$con->close();
-session_destroy();
-// $_SESSION=array();
-if(empty($_SESSION["admin_uname"]))
-{
-	header("Location:index.php");
-}
-else
-{
-	header("Location:index.php");
-}
+if(logged_in())
+	{
+		include("includes/DBConnection.inc.php");
+		$con->close();
+		session_destroy();
+		header("Location:./");
+	}
+	else
+	{
+		header("Location:./");
+	}
 ?>

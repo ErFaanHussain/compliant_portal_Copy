@@ -1,25 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
-<body>
 <?php
-include("includes/core.inc.php");
-include("includes/DBConnection.inc.php");
-include("adminLogin.php");
-
-if(logged_in())
-{
-	header('Location:depttCreation.php');
-    
-}
-else
-{
-	echo '<p class="login_error">Please Login first</p>';
-}
-
+	include("includes/core.inc.php");
+	if(logged_in())
+	{
+		header('Location:aDashboard.php');
+	}
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Super Admin Login - IUST Feedback Portal</title>
+	<?php
+			include("includes/logOut.header.php");
+			?> <script src="js/customJSsAdminLogin.js"></script>
+			<?php 
+			include("includes/DBConnection.inc.php");
+		 	include("adminLogin.php");
+	?>
 </body>
 </html>
