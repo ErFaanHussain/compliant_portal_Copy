@@ -27,7 +27,8 @@ include("includes/header.inc.php");
     {
       ?>
         <div class="card card-outline-info" style="margin-top:10px;">
-          <h5 class="card-header pb-0" style="background:#dbe3ea;"><i class="fa fa-comments" aria-hidden="true"></i> 
+					<!-- This is nothing but a test of Git -->
+          <h5 class="card-header pb-0" style="background:#dbe3ea;"><i class="fa fa-comments" aria-hidden="true"></i>
           <?php echo " ".$returned["topic"];?>
             <label class="form-control-label text-primary float-right"><small><?php echo $returned["topic_timeStamp"]?></small></label>
           </h5>
@@ -114,7 +115,7 @@ include("includes/header.inc.php");
                   }
                   ?>
               </div>
-            </div>    
+            </div>
                 <!-- here -->
           </div>
         </div>
@@ -157,14 +158,14 @@ include("includes/header.inc.php");
             </h5>
           </div>
           <div class="list-group list-group-flush">
-            
+
             <a href="http://iustlive.com" class="list-group-item list-group-item-action text-primary "><i class="fa fa-home" aria-hidden="true"></i>&nbsp;&nbsp;IUST Home</a>
             <a href="./" class="list-group-item list-group-item-action text-primary "><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;&nbsp;Portal Home</a>
             <a href="studentDashboard.php" class="list-group-item list-group-item-action text-primary "><i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;Dashboard</a>
             <a href="postCompliant.php" class="list-group-item list-group-item-action text-primary "><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;&nbsp;Post Complaint</a>
             <a href="http://studentservice.iustlive.com/Default.aspx" class="list-group-item list-group-item-action text-primary "><i class="fa fa-users" aria-hidden="true"></i>&nbsp;&nbsp;Student Services</a>
             <a href="http://www.iustlive.com/Index/Examination/OnlineExamResults.aspx" class="list-group-item list-group-item-action text-primary "><i class="fa fa-database" aria-hidden="true"></i>&nbsp;&nbsp;Results</a>
-            
+
           </div>
         </div>
   </div>

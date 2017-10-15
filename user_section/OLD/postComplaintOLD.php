@@ -45,6 +45,7 @@ include("includes/header.inc.php");
 						?>
 							</select>
 							<small id="selectHelp" class="form-text text-muted">Department you are sending Complaint to</small>
+							<!-- This is nothing but a test of Git -->
   			</div>
 			<div class="form-group">
 							<label class="col-form-label" for="complaint">Complaint</label>
@@ -99,22 +100,22 @@ include("includes/header.inc.php");
 						</h5>
 					</div>
 					<div class="list-group list-group-flush">
-            
+
             <a href="http://iustlive.com" class="list-group-item list-group-item-action text-primary "><i class="fa fa-home" aria-hidden="true"></i>&nbsp;&nbsp;IUST Home</a>
             <a href="./" class="list-group-item list-group-item-action text-primary "><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;&nbsp;Portal Home</a>
             <a href="studentDashboard.php" class="list-group-item list-group-item-action text-primary "><i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;Dashboard</a>
             <a href="postCompliant.php" class="list-group-item list-group-item-action text-primary "><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;&nbsp;Post Complaint</a>
             <a href="http://studentservice.iustlive.com/Default.aspx" class="list-group-item list-group-item-action text-primary "><i class="fa fa-users" aria-hidden="true"></i>&nbsp;&nbsp;Student Services</a>
             <a href="http://www.iustlive.com/Index/Examination/OnlineExamResults.aspx" class="list-group-item list-group-item-action text-primary "><i class="fa fa-database" aria-hidden="true"></i>&nbsp;&nbsp;Results</a>
-            
+
           	</div>
 			</div>
 	</div>
 </div>
 <footer class="">
 	<div class="text-center">
-		<div class="my-0"><i class="fa fa-code" aria-hidden="true"></i> with <i class="fa fa-heart" aria-hidden="true"></i> by 
-		<a href="http://facebook.com/erfaanhussain6">ErFaan</a> &amp; <a href="facebook.com/erfaanhussain6">Umar</a> 
+		<div class="my-0"><i class="fa fa-code" aria-hidden="true"></i> with <i class="fa fa-heart" aria-hidden="true"></i> by
+		<a href="http://facebook.com/erfaanhussain6">ErFaan</a> &amp; <a href="facebook.com/erfaanhussain6">Umar</a>
 		</div>
 		<small class="my-0">Copyright &copy; DOCS - IUST 2017 </small>
 	</div>
@@ -199,7 +200,7 @@ include("includes/header.inc.php");
 
 $con->close(); ?>
 <div class="footer container-fluid text-center" id="InfoFooter" style="display:none;">
-		<p class="my-0"><i class="fa fa-code" aria-hidden="true"></i> with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="facebook.com/erfaanhussain6">ErFaan</a> &amp; <a href="facebook.com/erfaanhussain6">Umar</a> 
+		<p class="my-0"><i class="fa fa-code" aria-hidden="true"></i> with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="facebook.com/erfaanhussain6">ErFaan</a> &amp; <a href="facebook.com/erfaanhussain6">Umar</a>
 		<button type="button" id="closeFooter" class="close mr-1 pt-1" aria-label="Close"><span class="align-middle" aria-hidden="true">&times;</span></button>
 		</p>
 		<small class="my-0">Copyright &copy; DOCS - IUST 2017 </small>
